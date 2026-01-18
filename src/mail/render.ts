@@ -100,7 +100,7 @@ export async function renderEmailSummaryMode(mail: EmailCache, env: Environment)
     } = env;
 
     const req = renderEmailDetail('', mail.id);
-    const prompt = `Summarize the following text in approximately 50 words with ${SUMMARY_TARGET_LANG}\n\n${mail.text}`;
+    const prompt = `请用${SUMMARY_TARGET_LANG}总结以下内容，大约 50 字，不要使用 markdown 格式。总结的开头，请以“这是发送到 ${mail.to} 的邮件”然后2个换行（也就是中间需要空一行）开头。接下来邮件内容\n\n${mail.text}`;
 
     try {
         if (AI && WORKERS_AI_MODEL) {
