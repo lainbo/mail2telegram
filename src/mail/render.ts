@@ -105,8 +105,8 @@ export async function renderEmailSummaryMode(mail: EmailCache, env: Environment)
 规则：
 1. 第一行固定为"这是发送到 ${mail.to} 的邮件"，然后空一行。
 2. 判断这封邮件是否是验证码邮件（包含验证码、确认码、OTP、security code、confirmation code等）。
-3. 如果是验证码邮件，第二行写"验证码：xxx"（xxx替换为实际验证码），然后空一行，再写"总结："加上约50字的总结。
-4. 如果不是验证码邮件，第二行直接写"总结："加上约50字的总结。
+3. 如果是验证码邮件，第二行写"验证码: xxx"（xxx替换为实际验证码），然后空一行，再写"总结："加上约50字的总结。
+4. 如果不是验证码邮件，第二行直接写"总结: "加上约50字的总结。
 
 邮件内容：
 ${mail.text}`;
