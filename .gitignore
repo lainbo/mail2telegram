@@ -149,3 +149,4 @@ wrangler.jsonc
 .idea
 .wrangler
 example
+.ace-tool/
