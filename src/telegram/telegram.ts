@@ -32,7 +32,7 @@ function handleOpenTMACommand(mode: string, text: string | null, env: Environmen
                 inline_keyboard: [
                     [
                         {
-                            text: 'Open Manager',
+                            text: '设置',
                             web_app: {
                                 url: `https://${DOMAIN}/tma?mode=${mode}`,
                             },

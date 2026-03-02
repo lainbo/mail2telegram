@@ -51,19 +51,19 @@
   <div id="app">
     <div v-if="func === 'list'">
       <h3 class="growContainer">
-        List Mode
+        地址管理
         <select class="growItem" style="margin-left: 10px;" v-model="mode">
-          <option value="block">Block list</option>
-          <option value="white">White list</option>
-          <option value="test">Test address</option>
+          <option value="block">黑名单</option>
+          <option value="white">白名单</option>
+          <option value="test">地址测试</option>
         </select>
       </h3>
       <p v-if="tipMessage">{{ tipMessage }}</p>
       <table>
         <thead>
           <tr>
-            <th>address</th>
-            <th>{{ mode === 'test' ? 'type' : 'action' }}</th>
+            <th>地址</th>
+            <th>{{ mode === 'test' ? '匹配结果' : '操作' }}</th>
           </tr>
         </thead>
         <tbody v-if="mode!=='test'">
@@ -72,13 +72,13 @@
               <input :placeholder="inputPlaceholder" class="growItem" v-model="inputAddress">
             </td>
             <td>
-              <button @click="addAddress">Add</button>
+              <button @click="addAddress">添加</button>
             </td>
           </tr>
           <tr :key="index" v-for="(address, index) in addresses">
             <td>{{ address }}</td>
             <td>
-              <button @click="removeAddress(index)">Delete</button>
+              <button @click="removeAddress(index)">删除</button>
             </td>
           </tr>
         </tbody>
@@ -88,7 +88,7 @@
               <input :placeholder="inputPlaceholder" class="growItem" v-model="inputAddress">
             </td>
             <td>
-              <button @click="testAddress">Test</button>
+              <button @click="testAddress">测试</button>
             </td>
           </tr>
           <tr :key="index" v-for="(item, index) in addresses">
@@ -99,37 +99,37 @@
       </table>
     </div>
     <div v-if="func === 'sendmail'">
-      <h3>Send Mail</h3>
+      <h3>发送邮件</h3>
       <p v-if="tipMessage">{{ tipMessage }}</p>
       <table>
         <tbody>
           <tr>
-            <td style="width: 10px;">From</td>
+            <td style="width: 10px;">发件人</td>
             <td>
               <input v-model="sendMail.from" class="growItem">
             </td>
           </tr>
           <tr>
-            <td>To</td>
+            <td>收件人</td>
             <td>
               <input v-model="sendMail.to" class="growItem">
             </td>
           </tr>
           <tr>
-            <td>Subject</td>
+            <td>主题</td>
             <td>
               <input v-model="sendMail.subject" class="growItem">
             </td>
           </tr>
           <tr>
-            <td>Text</td>
+            <td>正文</td>
             <td>
               <textarea v-model="sendMail.text" class="growItem"></textarea>
             </td>
           </tr>
           <tr>
             <td colspan="2">
-              <button>Send</button>
+              <button>发送</button>
             </td>
           </tr>
         </tbody>
@@ -220,11 +220,11 @@
         const inputPlaceholder = computed(() => {
           switch (mode.value) {
             case 'block':
-              return 'New block address regex';
+              return '输入要拦截的地址（支持正则）';
             case 'white':
-              return 'New white address regex';
+              return '输入要放行的地址（支持正则）';
             case 'test':
-              return 'Test address';
+              return '输入要测试的地址';
           }
         });
 
