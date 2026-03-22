@@ -1,7 +1,7 @@
 import type { ForwardableEmailMessage } from '@cloudflare/workers-types';
 import type { BlockPolicy, EmailCache, Environment } from '../../types';
 import { Dao } from '../../db';
-import { isMessageBlock, parseEmail, renderEmailListMode } from '../../mail';
+import { isMessageBlock, parseEmail, renderEmailSummaryMode } from '../../mail';
 import { createTelegramBotAPI } from '../../telegram';
 
 export async function sendMailToTelegram(mail: EmailCache, env: Environment): Promise<number[]> {
@@ -9,7 +9,7 @@ export async function sendMailToTelegram(mail: EmailCache, env: Environment): Pr
         TELEGRAM_TOKEN,
         TELEGRAM_ID,
     } = env;
-    const req = await renderEmailListMode(mail, env);
+    const req = await renderEmailSummaryMode(mail, env);
     const api = createTelegramBotAPI(TELEGRAM_TOKEN);
     const messageID: number[] = [];
     for (const id of TELEGRAM_ID.split(',')) {
